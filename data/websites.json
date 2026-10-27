@@ -1,0 +1,38 @@
+[
+  {
+    "id": "web-7an-1",
+    "title": "Tên website – đang cập nhật (Chủ đề: Văn hóa & Ký ức Đà Lạt)",
+    "category": "Đà Lạt & Văn hóa",
+    "description": "Dự án thuộc hệ sinh thái 7 An AI / An Nhiên AI chia sẻ những góc nhìn sâu lắng về văn hóa, con người và ký ức phố núi Đà Lạt. Đường dẫn chính thức sẽ được cập nhật khi chủ dự án cung cấp.",
+    "url": "",
+    "status": "Đường dẫn – chờ bổ sung",
+    "imageStatus": "Khung giữ chỗ"
+  },
+  {
+    "id": "web-7an-2",
+    "title": "Tên website – đang cập nhật (Chủ đề: Hoa & Thiên nhiên Đà Lạt)",
+    "category": "Hoa & Thiên nhiên",
+    "description": "Cẩm nang hình ảnh và câu chuyện về các loài hoa đặc trưng của Đà Lạt qua bốn mùa sương nắng. Chỉ kích hoạt nút truy cập khi có tên miền thực tế.",
+    "url": "",
+    "status": "Đường dẫn – chờ bổ sung",
+    "imageStatus": "Khung giữ chỗ"
+  },
+  {
+    "id": "web-7an-3",
+    "title": "Tên website – đang cập nhật (Chủ đề: Ẩm thực Phố Núi)",
+    "category": "Ẩm thực",
+    "description": "Tuyển tập những hương vị ẩm thực Đà Lạt chân thực, ấm áp từ quán nhỏ lâu năm đến không gian gia đình. Đang chờ bổ sung đường dẫn chính thức từ chị Trịnh Thị An.",
+    "url": "",
+    "status": "Đường dẫn – chờ bổ sung",
+    "imageStatus": "Khung giữ chỗ"
+  },
+  {
+    "id": "web-7an-4",
+    "title": "Tên website – đang cập nhật (Chủ đề: Âm nhạc & Nghệ thuật AI – An Nhiên AI)",
+    "category": "Âm nhạc & Kiến thức AI",
+    "description": "Không gian sáng tạo âm nhạc trữ tình, hình ảnh nghệ thuật và ứng dụng AI thực tiễn của Trịnh Thị An (7 An AI).",
+    "url": "",
+    "status": "Đường dẫn – chờ bổ sung",
+    "imageStatus": "Khung giữ chỗ"
+  }
+]

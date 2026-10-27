@@ -1,0 +1,362 @@
+/* ==========================================================================
+   HẸN NHAU GIỮA ĐÀ LẠT – TRỊNH THỊ AN (AN NHIÊN AI / 7 AN AI)
+   Bảng màu chủ đạo:
+   - Kem sương nhẹ: #F5F1E8
+   - Xanh thông trầm: #29483D
+   - Nâu cà phê ấm: #755443
+   - Vàng mật ong dịu: #C49A5A
+   - Than đậm: #262A27
+   - Xanh xám sương: #DCE4DF
+   ========================================================================== */
+
+:root {
+  --bg-mist: #F5F1E8;
+  --bg-card: #FCFBF7;
+  --pine-deep: #29483D;
+  --pine-dark: #1D352C;
+  --coffee-warm: #755443;
+  --honey-gold: #C49A5A;
+  --honey-light: #E8D5B5;
+  --charcoal: #262A27;
+  --text-muted: #525B55;
+  --mist-gray: #DCE4DF;
+  --border-soft: #D5DDD8;
+  --danger-rose: #A94438;
+  --font-serif: 'Playfair Display', 'Noto Serif', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow-soft: 0 10px 30px -5px rgba(38, 42, 39, 0.07), 0 4px 12px -2px rgba(38, 42, 39, 0.04);
+  --shadow-hover: 0 18px 38px -6px rgba(41, 72, 61, 0.14), 0 6px 16px -3px rgba(38, 42, 39, 0.08);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-mist);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-mist);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hỗ trợ giảm chuyển động theo cài đặt của người dùng (Phần 5) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Trạng thái bàn phím dễ nhìn (Accessibility Phần 20) */
+:focus-visible {
+  outline: 3px solid var(--honey-gold);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, .font-serif-title {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Thanh thông báo đầu trang & Đồng hồ thời gian thực */
+.top-utility-bar {
+  background: var(--pine-dark);
+  color: #F5F1E8;
+  font-size: 0.82rem;
+  border-bottom: 1px solid rgba(196, 154, 90, 0.25);
+}
+
+/* Header điều hướng */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(245, 241, 232, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+  transition: box-shadow 0.25s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 6px 24px rgba(38, 42, 39, 0.08);
+}
+
+.nav-link {
+  color: var(--charcoal);
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--pine-deep);
+  background: var(--mist-gray);
+}
+
+/* Hero Section */
+.hero-banner {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--pine-dark);
+  box-shadow: 0 22px 48px -12px rgba(29, 53, 44, 0.28);
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(24, 40, 34, 0.88) 0%,
+    rgba(29, 53, 44, 0.72) 55%,
+    rgba(38, 42, 39, 0.42) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(24, 40, 34, 0.78) 0%,
+      rgba(29, 53, 44, 0.88) 100%
+    );
+  }
+}
+
+/* Khung ảnh chân dung Trịnh Thị An – giữ nguyên tỷ lệ tự nhiên, tuyệt đối không làm méo mặt */
+.portrait-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid var(--honey-gold);
+  box-shadow: 0 16px 36px -8px rgba(41, 72, 61, 0.22);
+  background: var(--bg-card);
+}
+
+.portrait-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Lối vào nhanh (Quick Entry Pills) */
+.quick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: 9999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  color: var(--charcoal);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(38, 42, 39, 0.03);
+}
+
+.quick-pill:hover {
+  border-color: var(--pine-deep);
+  background: var(--mist-gray);
+  transform: translateY(-1px);
+}
+
+.quick-pill.active {
+  background: var(--pine-deep);
+  color: #FFFFFF;
+  border-color: var(--pine-deep);
+  box-shadow: 0 6px 16px rgba(41, 72, 61, 0.22);
+}
+
+/* Thẻ quán cà phê (Cafe Card) */
+.cafe-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cafe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--honey-gold);
+}
+
+/* Khung giữ chỗ hình ảnh quán trung thực & thẩm mỹ */
+.cafe-placeholder-art {
+  position: relative;
+  height: 205px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  color: #F5F1E8;
+}
+
+/* Nút bấm chính & phụ */
+.btn-primary-pine {
+  background-color: var(--pine-deep);
+  color: #F5F1E8;
+  border: 1px solid var(--pine-deep);
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary-pine:hover {
+  background-color: var(--pine-dark);
+  border-color: var(--pine-dark);
+}
+
+.btn-secondary-coffee {
+  background-color: var(--bg-mist);
+  color: var(--coffee-warm);
+  border: 1px solid rgba(117, 84, 67, 0.35);
+  padding: 0.65rem 1.15rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-secondary-coffee:hover {
+  background-color: #EBE4D5;
+  border-color: var(--coffee-warm);
+}
+
+.btn-honey {
+  background-color: var(--honey-gold);
+  color: #1F2421;
+  border: 1px solid var(--honey-gold);
+  padding: 0.7rem 1.35rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-honey:hover {
+  background-color: #d1a868;
+}
+
+/* Nhãn xác minh (Verification Badges) */
+.badge-verified {
+  background: rgba(41, 72, 61, 0.92);
+  color: #F5F1E8;
+  border: 1px solid rgba(196, 154, 90, 0.5);
+}
+
+.badge-recheck {
+  background: rgba(180, 83, 9, 0.92);
+  color: #FFFBEB;
+  border: 1px solid rgba(251, 191, 36, 0.5);
+}
+
+.badge-demo {
+  background: rgba(117, 84, 67, 0.94);
+  color: #F5F1E8;
+  border: 1px solid #E8D5B5;
+}
+
+/* Bản đồ Leaflet */
+#dalat-leaflet-map {
+  width: 100%;
+  height: 460px;
+  border-radius: 16px;
+  z-index: 10;
+}
+
+@media (max-width: 640px) {
+  #dalat-leaflet-map {
+    height: 360px;
+  }
+}
+
+/* Modal Hồ sơ chi tiết quán */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(24, 32, 28, 0.72);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 22px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+}
+
+/* Thanh cuộn tinh tế */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-mist);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B5C2BA;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pine-deep);
+}

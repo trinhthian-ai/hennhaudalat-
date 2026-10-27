@@ -1,0 +1,120 @@
+[
+  {
+    "id": "nua-ngay-o-da-lat",
+    "title": "Lịch trình Nửa Ngày Ở Đà Lạt: Chạm Vào Nhịp Sống Xưa & Hồ Sương",
+    "duration": "Nửa ngày (Buổi sáng hoặc Buổi chiều)",
+    "subtitle": "Dành cho người có ít thời gian nhưng muốn cảm nhận trọn vẹn cốt cách Đà Lạt qua mặt hồ Xuân Hương, khu phố cổ Hòa Bình và hương cà phê đặc sản.",
+    "weatherNote": "Buổi sáng sớm (06:00 – 08:00) quanh Hồ Xuân Hương sương ẩm và se lạnh (khoảng 14–16°C), bạn nên mang theo áo khoác ấm và khăn mỏng. Giờ mở cửa của các quán có thể thay đổi vào dịp Lễ/Tết.",
+    "distanceNote": "Các địa điểm đều nằm ở khu vực trung tâm (Phường 1 – Phường 4 – Phường 9). Không tự suy đoán phút di chuyển chính xác vì phụ thuộc vào mật độ giao thông thực tế.",
+    "stops": [
+      {
+        "order": 1,
+        "timeRef": "06:30 – 08:00 (Khung giờ mở cửa đã xác minh: 06:00 – 23:00)",
+        "cafeId": "bich-cau-ho-xuan-huong",
+        "placeName": "Cà Phê & Nhà Hàng Bích Câu (09 Pasteur)",
+        "activity": "Đón bình minh và ngắm làn sương mỏng tan dần trên mặt Hồ Xuân Hương, dùng điểm tâm sáng nhẹ nhàng bên bờ hồ.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=B%C3%ADch+C%C3%A2u+09+Pasteur+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJ60XWdCATcTERv2tjXcMwaYI"
+      },
+      {
+        "order": 2,
+        "timeRef": "08:30 – 10:00 (Khung giờ mở cửa đã xác minh: 07:00 – 21:30)",
+        "cafeId": "cafe-tung",
+        "placeName": "Cafe Tùng (06 Khu Hòa Bình)",
+        "activity": "Thưởng thức cà phê phin nóng, sữa chua phô mai hoặc bánh flan trong không gian hoài niệm từ năm 1956 và lắng nghe nhạc Pháp.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Cafe+T%C3%B9ng+6+Khu+Ho%C3%A0+B%C3%ACnh+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJB0LfrxUTcTERHyzyimpgQlg"
+      },
+      {
+        "order": 3,
+        "timeRef": "10:15 – 11:45 (Khung giờ mở cửa đã xác minh: 08:00 – 21:00)",
+        "cafeId": "still-cafe",
+        "placeName": "Still Cafe (59 Nguyễn Trãi – Gần Ga Đà Lạt)",
+        "activity": "Dạo bước trong khu vườn mang phong cách hoài cổ Nhật Bản, thưởng thức bánh sừng bò Matcha và ghé thăm các tiệm lưu niệm thủ công.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Still+Cafe+59+Nguy%E1%BB%85n+Tr%C3%A3i+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJawxt4R4TcTERR3yVdgtMhbI"
+      }
+    ]
+  },
+  {
+    "id": "mot-ngay-hen-nhau",
+    "title": "Lịch trình Một Ngày Hẹn Nhau: Từ Bình Minh Săn Mây Đến Hoàng Hôn Thung Lũng",
+    "duration": "1 Ngày trọn vẹn (05:00 – 20:00)",
+    "subtitle": "Hành trình đi qua đủ cung bậc cảm xúc của Đà Lạt: đón tia nắng đầu tiên trên đồi thông, tìm góc vườn hoa yên ả buổi trưa và ngắm thung lũng lên đèn lúc chiều tà.",
+    "weatherNote": "Đà Lạt thường có nắng trong vào buổi sáng nhưng có thể xuất hiện mưa rào bất chợt vào đầu giờ chiều (13:30 – 15:30) mùa mưa. Hãy chuẩn bị ô (dù) cầm tay và kiểm tra dự báo thời tiết trước khi đi săn mây.",
+    "distanceNote": "Lịch trình kết hợp khu vực Hoàng Hoa Thám (Phường 10), Triệu Việt Vương (Phường 4) và trục Hùng Vương – Trại Mát (Phường 11). Vui lòng mở bản đồ Google Maps từng chặng để xem lộ trình thực tế.",
+    "stops": [
+      {
+        "order": 1,
+        "timeRef": "05:00 – 07:30 (Khung giờ mở cửa đã xác minh: 04:30 – 22:00)",
+        "cafeId": "binh-minh-oi",
+        "placeName": "Tiệm Cà Phê Bình Minh Ơi (89 Hoàng Hoa Thám)",
+        "activity": "Đón bình minh, săn mây sớm bên sườn đồi thông, thưởng thức tách cà phê muối ấm và dùng bữa sáng bánh căn nóng hổi.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ti%E1%BB%87m+c%C3%A0+ph%C3%AA+B%C3%ACnh+Minh+%C6%A0i+89+Ho%C3%A0ng+Hoa+Th%C3%A1m+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJ0auSaVETcTERn_zqE5Mxz0Q"
+      },
+      {
+        "order": 2,
+        "timeRef": "09:30 – 11:30 (Khung giờ mở cửa đã xác minh: 07:30 – 22:00)",
+        "cafeId": "quan-cua-thoi-thanh-xuan",
+        "placeName": "Quán Của Thời Thanh Xuân (09 Triệu Việt Vương)",
+        "activity": "Tìm lại sự tĩnh lặng bên tách trà thảo mộc, trải nghiệm làm nến thơm/xà phòng thủ công trong không gian nhân văn.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n+C%E1%BB%A7a+Th%E1%BB%9Di+Thanh+Xu%C3%A2n+9+Tri%E1%BB%87u+Vi%E1%BB%87t+V%C6%B0%C6%A1ng+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJw6D__a8TcTERqUhnflvGR7s"
+      },
+      {
+        "order": 3,
+        "timeRef": "14:00 – 15:45 (Khung giờ mở cửa đã xác minh: 08:00 – 18:00)",
+        "cafeId": "khu-vuon-mua-he",
+        "placeName": "Tiệm Cà Phê Khu Vườn Mùa Hè (Hẻm 27/1 Đặng Thái Thân)",
+        "activity": "Thư giãn buổi chiều trong khu vườn ngập tràn dương xỉ, hương thảo và cẩm tú cầu.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Khu+V%C6%B0%E1%BB%9Dn+M%C3%B9a+H%C3%A8+27+H%E1%BA%BBm+1+%C4%90%E1%BA%B7ng+Th%C3%A1i+Th%C3%A2n+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJ5QlCZ6MTcTERODxqPibUdc0"
+      },
+      {
+        "order": 4,
+        "timeRef": "16:15 – 19:00 (Khung giờ mở cửa đã xác minh: 07:30 – 21:30)",
+        "cafeId": "tui-mo-to",
+        "placeName": "Tiệm Cà Phê Túi Mơ To hoặc Cheo Veooo (Hùng Vương – Sào Nam)",
+        "activity": "Ngắm hoàng hôn buông xuống sườn đồi và chiêm ngưỡng thung lũng nhà lồng Trại Mát lung linh lên đèn khi đêm về.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Ti%E1%BB%87m+C%C3%A0+Ph%C3%AA+T%C3%BAi+M%C6%A1+To+H%E1%BA%BBm+31+S%C3%A0o+Nam+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJITZmC34TcTERvSGZ7bPair0"
+      }
+    ]
+  },
+  {
+    "id": "hai-ngay-kham-pha",
+    "title": "Lịch trình Hai Ngày Khám Phá: Phố Núi, Rừng Thông & Ngoại Ô Thanh Bình",
+    "duration": "2 Ngày (Dành cho kỳ nghỉ cuối tuần sâu lắng)",
+    "subtitle": "Ngày 1 khám phá chiều sâu trung tâm và đồi thông cửa ngõ Prenn; Ngày 2 mở rộng hành trình ra vùng ngoại ô Xuân Trường – Cầu Đất hoặc Hồ Tuyền Lâm – Tà Nung.",
+    "weatherNote": "Các điểm ngoại ô (Xuân Trường, Hồ Tuyền Lâm, Tà Nung) thường nhiều sương và đóng cửa sớm hơn khu trung tâm (thường đóng lúc 17:00 – 18:00). Nên sắp xếp đi ngoại ô vào buổi sáng đến đầu giờ chiều.",
+    "distanceNote": "Lịch trình được chia theo cụm khu vực địa lý thực tế đã xác minh để hạn chế việc di chuyển ngược chiều.",
+    "stops": [
+      {
+        "order": 1,
+        "timeRef": "Ngày 1 - Buổi sáng (Khung giờ mở cửa: 07:00 – 22:00)",
+        "cafeId": "la-viet-coffee",
+        "placeName": "Là Việt Coffee (200 Nguyễn Công Trứ) & Đậm Đà Lạt (138 Yersin)",
+        "activity": "Khởi đầu ngày đầu tiên bằng hương vị cà phê Arabica rang xay chuẩn mực tại Đà Lạt.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=L%C3%A0+Vi%E1%BB%87t+Coffee+200+Nguy%E1%BB%85n+C%C3%B4ng+Tr%E1%BB%A9+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJuZxn7NAScTERQB4WFRsQ3Wk"
+      },
+      {
+        "order": 2,
+        "timeRef": "Ngày 1 - Buổi chiều & Tối (Khung giờ mở cửa: 07:00 – 21:00)",
+        "cafeId": "lung-chung-cafe",
+        "placeName": "Cụm Đèo Prenn – Đường 3/4: Lưng Chừng / đo đo / Lululola",
+        "activity": "Buổi chiều ẩn mình dưới thung lũng thông Lưng Chừng hoặc tô tượng, viết lưu niệm tại 'đo đo'; chiều muộn ngắm hoàng hôn tại Lululola.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=L%C6%B0ng+Ch%E1%BB%ABng+31%2F8+%C4%90%C6%B0%E1%BB%9Dng+3%2F4+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJZ8sUWjoTcTERhSOY6-GbGSA"
+      },
+      {
+        "order": 3,
+        "timeRef": "Ngày 2 - Buổi sáng (Khung giờ mở cửa: 06:00 – 19:30)",
+        "cafeId": "nha-ben-rung",
+        "placeName": "Tiệm Cà Phê Nhà Bên Rừng & Nắng Thủy Tinh (Hướng Xuân Trường)",
+        "activity": "Đón nắng sớm xuyên qua hai hàng thông tại Nhà Bên Rừng, sau đó xuôi về Xuân Trường nghe tiếng đàn piano giữa đồi thông tại Nắng Thủy Tinh.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Nh%C3%A0+B%C3%AAn+R%E1%BB%ABng+T%E1%BB%95+T%C3%A2y+H%E1%BB%93+2+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJWw5ukW8TcTERhGX1TNSFZT0"
+      },
+      {
+        "order": 4,
+        "timeRef": "Ngày 2 - Buổi trưa & Chiều (Khung giờ mở cửa: 10:00 – 16:00)",
+        "cafeId": "rung-thong-mo-farm-bistro",
+        "placeName": "Rừng Thông Mơ Farm & Bistro (Hồ Tuyền Lâm) hoặc Nhà Hàng Thủy Tạ",
+        "activity": "Dùng bữa trưa và thư giãn giữa rừng thông Hồ Tuyền Lâm, trước khi khép lại chuyến đi bên bờ Hồ Xuân Hương.",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=R%E1%BB%ABng+Th%C3%B4ng+M%C6%A1+Farm+Bistro+H%E1%BB%93+Tuy%E1%BB%81n+L%C3%A2m+%C4%90%C3%A0+L%E1%BA%A1t&query_place_id=ChIJYw0CIp5rcTERFX9XDKdXgtg"
+      }
+    ]
+  }
+]

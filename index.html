@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HẸN NHAU GIỮA ĐÀ LẠT – Mỗi góc cà phê, một cuộc hẹn đáng nhớ | Trịnh Thị An – An Nhiên AI</title>
+  <meta name="description" content="Cẩm nang khám phá những góc cà phê đẹp và đáng trải nghiệm tại Đà Lạt, được xây dựng bởi Trịnh Thị An (7 An AI / An Nhiên AI) với hơn 30 năm gắn bó cùng phố núi." />
+  <meta name="author" content="Trịnh Thị An – An Nhiên AI (7 An AI)" />
+
+  <!-- Google Fonts hỗ trợ tiếng Việt đầy đủ (Phần 5) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v3.4.17 -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Leaflet 1.9.4 cho Bản đồ cà phê Đà Lạt tương tác (Phần 11) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Stylesheet chính của dự án -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- =====================================================================
+       THANH THỜI GIAN HIỆN HÀNH & THỐNG KÊ TRUY CẬP (PHẦN 7.8 & PHẦN 8)
+       ===================================================================== -->
+  <div class="top-utility-bar py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span class="inline-flex items-center gap-1.5 font-medium text-[#E8D5B5]">
+          <span aria-hidden="true">🌲</span>
+          <span>Đà Lạt, Việt Nam (Múi giờ: Asia/Ho_Chi_Minh)</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <span aria-hidden="true">📅</span>
+          <span class="vn-current-date font-medium">Đang tải ngày...</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-[#E8D5B5] font-semibold">
+          <span aria-hidden="true">🕒</span>
+          <span class="vn-current-time">00:00:00</span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" id="open-visitor-stats-btn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#29483D] hover:bg-[#385E50] text-[#F5F1E8] text-xs font-medium border border-[#C49A5A]/40 transition">
+          <span aria-hidden="true">📊</span>
+          <span class="visitor-stats-status">Thống kê truy cập: Chưa kết nối</span>
+        </button>
+        <button type="button" id="open-owner-guide-btn" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#755443] hover:bg-[#8A6450] text-[#F5F1E8] text-xs font-medium transition">
+          <span>📘 Cẩm nang Quản trị & Thay ảnh</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       HEADER & MENU ĐIỀU HƯỚNG 8 MỤC (PHẦN 6)
+       ===================================================================== -->
+  <header id="main-site-header" class="site-header">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <!-- Thương hiệu -->
+      <a href="#trang-chu" class="flex items-center gap-3 text-decoration-none group">
+        <div class="w-10 h-10 rounded-xl bg-[#29483D] text-[#F5F1E8] flex items-center justify-center font-serif-title font-bold text-lg border border-[#C49A5A]">
+          7A
+        </div>
+        <div>
+          <span class="block font-serif-title font-bold text-lg sm:text-xl text-[#29483D] leading-tight">
+            HẸN NHAU GIỮA ĐÀ LẠT
+          </span>
+          <span class="block text-[11px] text-[#755443] font-medium">
+            Chủ dự án: Trịnh Thị An – An Nhiên AI
+          </span>
+        </div>
+      </a>
+
+      <!-- Menu trên Máy tính (8 mục đầy đủ theo Phần 6) -->
+      <nav aria-label="Điều hướng chính" class="hidden xl:flex items-center gap-1">
+        <a href="#trang-chu" class="nav-link">1. Trang chủ</a>
+        <a href="#kham-pha-quan" class="nav-link">2. Khám phá quán</a>
+        <a href="#ban-do-ca-phe" class="nav-link">3. Bản đồ cà phê</a>
+        <a href="#lich-trinh" class="nav-link">4. Lịch trình</a>
+        <a href="#goc-anh-dep" class="nav-link">5. Góc ảnh đẹp</a>
+        <a href="#goc-cua-7-an" class="nav-link">6. Góc của 7 An</a>
+        <a href="#website-cua-7-an" class="nav-link">7. Website của 7 An</a>
+        <a href="#lien-he" class="nav-link">8. Liên hệ</a>
+      </nav>
+
+      <!-- Nút Lưu yêu thích & Nút mở Menu Điện thoại -->
+      <div class="flex items-center gap-2">
+        <button type="button" id="open-fav-modal-btn" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#FCFBF7] border border-[#D5DDD8] hover:border-[#C49A5A] text-xs sm:text-sm font-semibold text-[#262A27] shadow-sm transition">
+          <span aria-hidden="true">❤️</span>
+          <span class="hidden sm:inline">Đã lưu</span>
+          <span class="js-fav-count-badge px-1.5 py-0.5 rounded-full bg-[#29483D] text-white text-xs">0</span>
+        </button>
+
+        <button type="button" id="mobile-menu-toggle-btn" aria-expanded="false" aria-controls="mobile-menu-panel" class="xl:hidden p-2.5 rounded-xl bg-[#29483D] text-[#F5F1E8] hover:bg-[#1D352C] transition" aria-label="Mở menu điều hướng">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu thu gọn trên Điện thoại & Máy tính bảng (Phần 6) -->
+    <div id="mobile-menu-panel" class="hidden xl:hidden bg-[#FCFBF7] border-b border-[#D5DDD8] px-4 py-4 shadow-lg">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <a href="#trang-chu" class="nav-link bg-[#F5F1E8]">1. Trang chủ</a>
+        <a href="#kham-pha-quan" class="nav-link bg-[#F5F1E8]">2. Khám phá quán</a>
+        <a href="#ban-do-ca-phe" class="nav-link bg-[#F5F1E8]">3. Bản đồ cà phê</a>
+        <a href="#lich-trinh" class="nav-link bg-[#F5F1E8]">4. Lịch trình</a>
+        <a href="#goc-anh-dep" class="nav-link bg-[#F5F1E8]">5. Góc ảnh đẹp</a>
+        <a href="#goc-cua-7-an" class="nav-link bg-[#F5F1E8]">6. Góc của 7 An</a>
+        <a href="#website-cua-7-an" class="nav-link bg-[#F5F1E8]">7. Website của 7 An</a>
+        <a href="#lien-he" class="nav-link bg-[#F5F1E8]">8. Liên hệ</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- =====================================================================
+         MỤC 1: TRANG CHỦ – HERO, TÌM KIẾM, LỐI VÀO NHANH, GIỚI THIỆU CHỦ DỰ ÁN (PHẦN 7)
+         ===================================================================== -->
+    <section id="trang-chu" class="max-w-7xl mx-auto px-4 pt-6 pb-12">
+      <!-- 7.1 Hình ảnh mở đầu & Thông điệp cảm xúc -->
+      <div class="hero-banner relative min-h-[520px] flex items-center">
+        <img src="images/dalat-hero-ai.jpg" alt="Khung cảnh sương sớm rừng thông và tách cà phê ấm bên thung lũng Đà Lạt" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <!-- Nhãn minh bạch cho ảnh nền cảm xúc chung (Phần 5 & Phần 18) -->
+        <div class="absolute bottom-3 right-4 z-10 bg-black/60 text-[#DCE4DF] text-[11px] px-2.5 py-1 rounded-md backdrop-blur-sm border border-white/15">
+          Ảnh nền cảm xúc Đà Lạt: Ảnh minh họa tạo bằng AI (Có thể thay bằng ảnh chụp thật trong thư mục images/)
+        </div>
+
+        <div class="relative z-10 w-full p-6 sm:p-10 lg:p-14 max-w-3xl text-[#F5F1E8]">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C49A5A]/25 border border-[#C49A5A] text-[#E8D5B5] text-xs font-semibold mb-4">
+            <span>☕ Cẩm nang Đà Lạt chân thực • Đẹp để ngắm • Sâu để nhớ • Thật để dùng</span>
+          </div>
+
+          <h1 class="font-serif-title text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F5F1E8] mb-3 leading-tight">
+            HẸN NHAU GIỮA ĐÀ LẠT
+          </h1>
+          <p class="font-serif-title italic text-xl sm:text-2xl text-[#E8D5B5] mb-4">
+            “Mỗi góc cà phê, một cuộc hẹn đáng nhớ.”
+          </p>
+          <blockquote class="text-sm sm:text-base text-[#DCE4DF] border-l-2 border-[#C49A5A] pl-4 mb-6 leading-relaxed">
+            “Có những cuộc hẹn không cần vội. Chỉ cần một góc cà phê, một người thương và Đà Lạt dịu dàng ở đó.”
+          </blockquote>
+
+          <!-- 7.2 Thanh tìm kiếm ngay trên Trang chủ -->
+          <form id="hero-search-form" class="bg-[#FCFBF7] p-2 rounded-2xl shadow-xl flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-6">
+            <div class="flex-1 flex items-center gap-2 px-3 py-1.5">
+              <span class="text-[#755443]" aria-hidden="true">🔍</span>
+              <input
+                type="search"
+                id="hero-search-input"
+                placeholder="Tìm tên quán (Túi Mơ To, Tùng, Bình Minh Ơi...), khu vực hoặc phong cách..."
+                aria-label="Tìm kiếm quán cà phê Đà Lạt"
+                class="w-full bg-transparent text-[#262A27] placeholder-[#525B55] text-sm focus:outline-none"
+              />
+            </div>
+            <button type="submit" class="btn-primary-pine py-3 px-6 rounded-xl text-sm">
+              Tìm góc hẹn ngay
+            </button>
+          </form>
+
+          <!-- Hai nút hành động chính trên Hero -->
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#kham-pha-quan" class="btn-honey">
+              <span>☕ Khám phá quán cà phê (33 quán đã xác minh)</span>
+            </a>
+            <a href="#ban-do-ca-phe" class="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-[#F5F1E8] border border-white/30 text-sm font-semibold backdrop-blur-sm transition">
+              <span>🗺️ Xem bản đồ cà phê</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7.3 Lối vào nhanh (10 nhóm trải nghiệm trên Trang chủ) -->
+      <div class="mt-8 bg-[#FCFBF7] border border-[#D5DDD8] rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Lối vào nhanh theo cảm xúc</span>
+            <h2 class="font-serif-title text-xl sm:text-2xl font-bold text-[#29483D]">
+              Hôm nay bạn muốn hẹn nhau ở một góc Đà Lạt như thế nào?
+            </h2>
+          </div>
+          <a href="#kham-pha-quan" class="text-xs font-semibold text-[#29483D] underline hover:text-[#755443]">
+            Mở bộ lọc chi tiết →
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore active" data-category="all">
+            <span>☕ Tất cả (33 quán thật)</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="ngam-ho">
+            <span>🌊 Ngắm hồ</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="san-may">
+            <span>☁️ Săn mây</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="binh-minh">
+            <span>🌅 Ngắm bình minh</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="hoang-hon">
+            <span>🌇 Ngắm hoàng hôn</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="rung-thong">
+            <span>🌲 Giữa rừng thông</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="da-lat-xua">
+            <span>📻 Đà Lạt xưa</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="vuon-hoa">
+            <span>🌸 Vườn hoa</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="yen-tinh">
+            <span>📖 Yên tĩnh</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="gia-dinh">
+            <span>👨‍👩‍👧‍👦 Gia đình</span>
+          </button>
+          <button type="button" class="quick-pill js-category-filter-btn js-scroll-to-explore" data-category="hen-ho">
+            <span>💑 Hẹn hò</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 7.7 Khu vực giới thiệu Chủ Website trên Trang chủ (PHẦN 3.1 & PHẦN 7.7) -->
+      <div class="mt-10 bg-gradient-to-br from-[#29483D] to-[#1D352C] text-[#F5F1E8] rounded-3xl p-6 sm:p-10 shadow-xl border border-[#C49A5A]/40">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Ảnh chân dung thật của chị Trịnh Thị An -->
+          <div class="lg:col-span-4 flex flex-col items-center">
+            <div class="portrait-frame max-w-[300px] w-full">
+              <img
+                src="images/trinh-thi-an-working.jpg"
+                alt="Chân dung chị Trịnh Thị An – Chủ dự án Hẹn nhau giữa Đà Lạt (An Nhiên AI)"
+                class="portrait-img"
+              />
+            </div>
+            <span class="mt-2.5 text-xs text-[#E8D5B5] font-medium text-center">
+              Trịnh Thị An – Chủ dự án Hẹn nhau giữa Đà Lạt
+            </span>
+          </div>
+
+          <!-- Nội dung giới thiệu tinh tế, gần gũi -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C49A5A]/20 border border-[#C49A5A]/60 text-[#E8D5B5] text-xs font-semibold">
+              <span>✨ Người khởi xướng & Thực hiện dự án</span>
+            </div>
+            <h2 class="font-serif-title text-2xl sm:text-4xl font-bold text-[#F5F1E8] leading-snug">
+              Trịnh Thị An – <span class="text-[#E8D5B5]">An Nhiên AI (7 An AI)</span>
+            </h2>
+            <blockquote class="text-base sm:text-lg text-[#F5F1E8]/95 italic border-l-4 border-[#C49A5A] pl-4 py-1 leading-relaxed">
+              “Với hơn 30 năm sinh sống tại Đà Lạt, Trịnh Thị An mong muốn lưu giữ và chia sẻ những góc cà phê đẹp, để mỗi cuộc gặp gỡ nơi phố núi đều trở thành một kỷ niệm đáng nhớ.”
+            </blockquote>
+            <p class="text-sm sm:text-base text-[#DCE4DF] leading-relaxed">
+              Dù hiện tại không còn sinh sống ở thành phố ngàn hoa, Đà Lạt vẫn luôn là miền ký ức sâu đậm trong cuộc đời tôi. Website <strong>Hẹn Nhau Giữa Đà Lạt</strong> ra đời như một cuốn cẩm nang trung thực, cẩn trọng kiểm chứng từng địa chỉ, khung giờ và vị trí bản đồ — để bất kỳ ai yêu Đà Lạt cũng tìm được một chốn dừng chân bình yên.
+            </p>
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <a href="#goc-cua-7-an" class="btn-honey">
+                <span>📖 Đọc câu chuyện của 7 An</span>
+              </a>
+              <a href="#lien-he" class="px-4 py-2.5 rounded-xl border border-[#E8D5B5]/50 hover:bg-white/10 text-sm font-semibold text-[#F5F1E8] transition">
+                <span>📞 Kết nối cùng Trịnh Thị An</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7.4 Các bộ sưu tập quán tiêu biểu trên Trang chủ -->
+      <div class="mt-12">
+        <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Tuyển chọn tiêu biểu</span>
+            <h2 class="font-serif-title text-2xl sm:text-3xl font-bold text-[#29483D]">
+              6 Góc Cà Phê Đà Lạt Tiêu Biểu Cho Cuộc Hẹn Đầu Tiên
+            </h2>
+          </div>
+          <a href="#kham-pha-quan" class="btn-secondary-coffee text-xs sm:text-sm">
+            <span>Xem toàn bộ 33 quán đã kiểm chứng ↓</span>
+          </a>
+        </div>
+
+        <div id="featured-collections-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Render tự động từ dữ liệu đã xác minh -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 2: KHÁM PHÁ QUÁN CÀ PHÊ – BỘ LỌC 12 NHÓM & ĐA TIÊU CHÍ (PHẦN 9)
+         ===================================================================== -->
+    <section id="kham-pha-quan" class="py-14 bg-[#EFEAE0]/60 border-t border-b border-[#D5DDD8]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl mb-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Hệ thống tra cứu & Kiểm chứng thực tế</span>
+          <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D] mt-1 mb-2">
+            Khám Phá Quán Cà Phê Đà Lạt
+          </h2>
+          <p class="text-sm sm:text-base text-[#525B55]">
+            Giai đoạn đầu hướng đến tuyển chọn khoảng 50 quán cà phê. Hiện tại hệ thống đã đối chiếu và xác minh thực tế <strong>33 quán đang hoạt động</strong> (đồng thời loại trừ các quán đã đóng cửa như <em>Thanh Thủy Blue Water</em>, <em>Tiệm Cà Phê Tháng Ba</em>, <em>Woodstock Bùi Thị Xuân</em>). Tuyệt đối không thêm quán chưa đủ căn cứ chỉ để làm đầy số lượng.
+          </p>
+        </div>
+
+        <!-- Bảng điều khiển tìm kiếm & lọc đa chiều -->
+        <div class="bg-[#FCFBF7] border border-[#D5DDD8] rounded-2xl p-5 shadow-sm mb-6 space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+            <!-- Tìm theo từ khóa -->
+            <div class="md:col-span-5">
+              <label for="explore-search-input" class="block text-xs font-bold uppercase text-[#755443] mb-1">
+                Tìm theo tên quán, đường phố, đồ uống, tiện ích
+              </label>
+              <input
+                type="search"
+                id="explore-search-input"
+                placeholder="Nhập: Túi Mơ To, Yersin, Đèo Prenn, cà phê muối, piano..."
+                class="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8] text-sm text-[#262A27] focus:outline-none focus:border-[#29483D]"
+              />
+            </div>
+
+            <!-- Lọc theo Khu vực -->
+            <div class="md:col-span-3">
+              <label for="filter-area-select" class="block text-xs font-bold uppercase text-[#755443] mb-1">
+                Khu vực tại Đà Lạt
+              </label>
+              <select id="filter-area-select" class="w-full px-3 py-2.5 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8] text-sm text-[#262A27]">
+                <option value="all">Tất cả khu vực</option>
+              </select>
+            </div>
+
+            <!-- Lọc theo Mức giá tham khảo -->
+            <div class="md:col-span-2">
+              <label for="filter-price-select" class="block text-xs font-bold uppercase text-[#755443] mb-1">
+                Mức giá tham khảo
+              </label>
+              <select id="filter-price-select" class="w-full px-3 py-2.5 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8] text-sm text-[#262A27]">
+                <option value="all">Mọi mức giá</option>
+                <option value="Dưới 70.000đ">Dưới 70.000đ</option>
+                <option value="50.000đ – 100.000đ">50.000đ – 100.000đ</option>
+                <option value="Trên 100.000đ">Trên 100.000đ (Gồm vé/Nhà hàng)</option>
+              </select>
+            </div>
+
+            <!-- Lọc theo Trạng thái dữ liệu -->
+            <div class="md:col-span-2">
+              <label for="filter-verification-select" class="block text-xs font-bold uppercase text-[#755443] mb-1">
+                Chế độ dữ liệu
+              </label>
+              <select id="filter-verification-select" class="w-full px-3 py-2.5 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8] text-sm text-[#262A27]">
+                <option value="verified-only">Chỉ quán thật đã xác minh (33)</option>
+                <option value="all">Kèm thẻ mẫu kỹ thuật (34)</option>
+                <option value="demo-only">Chỉ xem thẻ DỮ LIỆU MINH HỌA (1)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 12 Nhóm khám phá theo đúng Phần 9 -->
+          <div>
+            <span class="block text-xs font-bold uppercase text-[#755443] mb-2">
+              Chọn nhóm phong cách, cảnh quan & nhu cầu (12 nhóm chuẩn):
+            </span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="quick-pill js-category-filter-btn active" data-category="all">☕ Tất cả nhóm</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="ngam-ho">🌊 Ngắm hồ Xuân Hương</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="san-may">☁️ Săn mây</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="binh-minh">🌅 Ngắm bình minh</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="hoang-hon">🌇 Ngắm hoàng hôn</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="rung-thong">🌲 Giữa rừng thông</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="da-lat-xua">📻 Phong cách Đà Lạt xưa</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="vuon-hoa">🌸 Sân vườn & hoa</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="kien-truc">🏛️ Kiến trúc đẹp</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="gia-dinh">👨‍👩‍👧‍👦 Dành cho gia đình</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="hen-ho">💑 Dành cho cặp đôi</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="check-in">📸 Cà phê check-in</button>
+              <button type="button" class="quick-pill js-category-filter-btn" data-category="yen-tinh">📖 Yên tĩnh, đọc sách & thư giãn</button>
+            </div>
+          </div>
+
+          <!-- Thanh trạng thái kết quả & lọc nhanh yêu thích -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#E4E9E5]">
+            <p id="cafes-result-count" class="text-xs sm:text-sm font-semibold text-[#29483D]">
+              Đang tải danh sách quán...
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+              <label class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#262A27] cursor-pointer">
+                <input type="checkbox" id="filter-only-fav-checkbox" class="rounded text-[#29483D] focus:ring-[#29483D] w-4 h-4" />
+                <span>❤️ Chỉ hiện quán tôi đã lưu yêu thích</span>
+              </label>
+              <button type="button" id="filter-reset-all-btn" class="text-xs font-semibold text-[#755443] hover:text-[#29483D] underline">
+                Đặt lại bộ lọc
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lưới hiển thị các thẻ quán cà phê -->
+        <div id="cafes-explore-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Render tự động bằng JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 3: BẢN ĐỒ CÀ PHÊ ĐÀ LẠT (PHẦN 11)
+         ===================================================================== -->
+    <section id="ban-do-ca-phe" class="py-14 max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl mb-6">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Định vị & Chỉ đường thực tế</span>
+        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D] mt-1 mb-2">
+          Bản Đồ Cà Phê Đà Lạt
+        </h2>
+        <p class="text-sm sm:text-base text-[#525B55]">
+          Chỉ ghim những quán có vị trí đã được kiểm chứng thực tế tại Đà Lạt. Bạn có thể lọc theo nhóm quán trên bản đồ hoặc chọn trực tiếp từ danh sách bên cạnh để mở chỉ đường Google Maps.
+        </p>
+      </div>
+
+      <!-- Bộ lọc nhóm quán trên bản đồ -->
+      <div class="flex flex-wrap gap-2 mb-5">
+        <button type="button" class="quick-pill js-map-category-btn active" data-map-cat="all">📍 Tất cả vị trí (33)</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="ngam-ho">🌊 Quanh Hồ Xuân Hương</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="san-may">☁️ Săn mây & Bình minh</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="rung-thong">🌲 Giữa rừng thông</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="da-lat-xua">📻 Đà Lạt xưa</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="vuon-hoa">🌸 Sân vườn & Hoa</button>
+        <button type="button" class="quick-pill js-map-category-btn" data-map-cat="gia-dinh">👨‍👩‍👧‍👦 Phù hợp gia đình</button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Khung bản đồ Leaflet OpenStreetMap -->
+        <div class="lg:col-span-7 bg-[#FCFBF7] p-3 rounded-2xl border border-[#D5DDD8] shadow-sm">
+          <div id="dalat-leaflet-map" aria-label="Bản đồ tương tác các quán cà phê Đà Lạt"></div>
+          <div class="mt-3 px-2 flex flex-wrap items-center justify-between gap-2 text-xs text-[#525B55]">
+            <span id="map-tech-status-banner">Đang khởi tạo bản đồ tương tác OpenStreetMap...</span>
+            <span>Không yêu cầu khóa bí mật (API Key) trong mã nguồn công khai</span>
+          </div>
+        </div>
+
+        <!-- Danh sách quán đi kèm bản đồ (Luôn hoạt động ngay cả khi mạng chặn bản đồ) -->
+        <div class="lg:col-span-5 bg-[#FCFBF7] p-4 rounded-2xl border border-[#D5DDD8] shadow-sm">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#E4E9E5]">
+            <h3 class="font-serif-title text-lg font-bold text-[#29483D]">Danh sách tọa độ & Chỉ đường</h3>
+            <span id="map-companion-count" class="text-xs font-semibold text-[#755443]">33 địa điểm</span>
+          </div>
+          <div id="map-companion-list" class="space-y-2.5 max-h-[410px] overflow-y-auto pr-1">
+            <!-- Render tự động -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 4: LỊCH TRÌNH KHÁM PHÁ ĐÀ LẠT (PHẦN 12)
+         ===================================================================== -->
+    <section id="lich-trinh" class="py-14 bg-[#EFEAE0]/60 border-t border-b border-[#D5DDD8]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Gợi ý hành trình thực tế</span>
+          <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D] mt-1 mb-2">
+            Lịch Trình Hẹn Nhau Giữa Đà Lạt
+          </h2>
+          <p class="text-sm sm:text-base text-[#525B55]">
+            Ba lịch trình gợi ý (Nửa ngày, Một ngày, Hai ngày) được xây dựng hoàn toàn từ các quán cà phê đã xác minh địa chỉ và giờ hoạt động thực tế. Bạn có thể bấm vào từng điểm dừng để xem hồ sơ chi tiết hoặc mở Google Maps.
+          </p>
+        </div>
+
+        <div id="itineraries-container" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Render tự động từ data/itineraries.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 5: GÓC ẢNH ĐẸP ĐÀ LẠT (PHẦN 13)
+         ===================================================================== -->
+    <section id="goc-anh-dep" class="py-14 max-w-7xl mx-auto px-4">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Kể chuyện bằng hình ảnh</span>
+        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D] mt-1 mb-2">
+          Góc Ảnh Đẹp Theo Tinh Thần Đà Lạt
+        </h2>
+        <p class="text-sm sm:text-base text-[#525B55]">
+          Cẩm nang 7 phong cách chụp ảnh đặc trưng của phố núi Đà Lạt — phân biệt rõ <strong>hướng dẫn nghệ thuật chung</strong> (bố cục, ánh sáng, góc máy, trang phục, mẹo chụp bằng điện thoại) với các quán thực tế có bối cảnh tương ứng.
+        </p>
+      </div>
+
+      <div id="photo-guides-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Render tự động 7 chủ đề nhiếp ảnh Đà Lạt -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 6: GÓC CỦA 7 AN / AN NHIÊN AI (PHẦN 3.2 & PHẦN 14)
+         ===================================================================== -->
+    <section id="goc-cua-7-an" class="py-16 bg-[#29483D] text-[#F5F1E8]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <!-- Khung ảnh chân dung thật của chị Trịnh Thị An -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5 w-full max-w-[380px]">
+              <figure class="portrait-frame">
+                <img
+                  src="images/trinh-thi-an-portrait.jpg"
+                  alt="Ảnh chân dung chính thức chị Trịnh Thị An – Chủ dự án Hẹn nhau giữa Đà Lạt"
+                  class="portrait-img"
+                />
+                <figcaption class="p-3 bg-[#1D352C] text-center text-xs text-[#E8D5B5] font-semibold">
+                  Trịnh Thị An – Chủ dự án Hẹn nhau giữa Đà Lạt
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="mt-4 p-3.5 rounded-xl bg-white/10 border border-white/20 text-xs text-[#DCE4DF] max-w-[380px] text-center">
+              💡 <strong>Hướng dẫn thay ảnh 1 thao tác:</strong> Chị có thể thay tệp <code class="text-[#E8D5B5]">images/trinh-thi-an-portrait.jpg</code> hoặc <code class="text-[#E8D5B5]">images/trinh-thi-an-working.jpg</code> bằng ảnh mới cùng tên mà không cần sửa mã lệnh.
+            </div>
+          </div>
+
+          <!-- Tâm tình & Câu chuyện dự án (Phần 14) -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C49A5A]/25 border border-[#C49A5A] text-[#E8D5B5] text-xs font-semibold">
+              <span>🌿 Góc của 7 An • An Nhiên AI</span>
+            </div>
+
+            <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#F5F1E8] leading-tight">
+              Trịnh Thị An – Chủ dự án Hẹn nhau giữa Đà Lạt
+            </h2>
+            <p class="text-sm uppercase tracking-wider text-[#E8D5B5] font-semibold">
+              Thương hiệu: 7 An AI / An Nhiên AI • Hơn 30 năm gắn bó cùng Đà Lạt
+            </p>
+
+            <div class="space-y-4 text-sm sm:text-base text-[#F5F1E8]/90 leading-relaxed">
+              <p>
+                Xin chào bạn, tôi là <strong>Trịnh Thị An</strong>, còn được biết đến với thương hiệu <strong>An Nhiên AI (7 An AI)</strong>.
+              </p>
+              <p>
+                Tôi đã sinh sống hơn 30 năm tại Đà Lạt. Ba thập kỷ đi qua những mùa sương giăng mặt hồ Xuân Hương, những buổi sớm nghe tiếng thông reo trên đồi và những chiều mưa phố núi se lạnh đã biến Đà Lạt thành một phần máu thịt, một miền ký ức sâu đậm trong cuộc đời tôi dù hiện tại tôi không còn sống ở thành phố này.
+              </p>
+              <p>
+                Tôi thực hiện dự án <strong>HẸN NHAU GIỮA ĐÀ LẠT</strong> với mong muốn gửi tặng cộng đồng một cuốn cẩm nang khám phá những góc cà phê đẹp và đáng trải nghiệm — được xây dựng bằng tình yêu chân thành dành cho Đà Lạt và sự trân trọng cao nhất đối với thời gian, trải nghiệm của người sử dụng.
+              </p>
+              <p>
+                Tại đây, chúng tôi kiên định với ba giá trị cốt lõi:
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <li class="p-4 rounded-xl bg-[#1D352C] border border-[#C49A5A]/40">
+                  <strong class="block font-serif-title text-[#E8D5B5] text-base mb-1">1. ĐẸP</strong>
+                  <span class="text-xs text-[#DCE4DF]">Đẹp tinh tế, lãng mạn để người ta muốn ngắm và tìm về sự bình yên.</span>
+                </li>
+                <li class="p-4 rounded-xl bg-[#1D352C] border border-[#C49A5A]/40">
+                  <strong class="block font-serif-title text-[#E8D5B5] text-base mb-1">2. SÂU</strong>
+                  <span class="text-xs text-[#DCE4DF]">Sâu lắng trong từng câu chuyện văn hóa phố núi để người ta muốn nhớ mãi.</span>
+                </li>
+                <li class="p-4 rounded-xl bg-[#1D352C] border border-[#C49A5A]/40">
+                  <strong class="block font-serif-title text-[#E8D5B5] text-base mb-1">3. THẬT & HỮU ÍCH</strong>
+                  <span class="text-xs text-[#DCE4DF]">Thông tin kiểm chứng minh bạch, rõ nguồn để người ta an tâm sử dụng.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 7: KHÁM PHÁ NHỮNG WEBSITE KHÁC CỦA 7 AN (PHẦN 15)
+         ===================================================================== -->
+    <section id="website-cua-7-an" class="py-14 max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div class="max-w-3xl">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Hệ sinh thái nội dung Trịnh Thị An</span>
+          <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D] mt-1 mb-2">
+            Khám Phá Những Website Khác Của 7 An
+          </h2>
+          <p class="text-sm sm:text-base text-[#525B55]">
+            Nơi kết nối các dự án website của Trịnh Thị An (7 An AI / An Nhiên AI) về Đà Lạt, ẩm thực, hoa, hình ảnh, âm nhạc và kiến thức. Theo nguyên tắc trung thực, các thẻ chưa được cung cấp đường dẫn cụ thể được giữ ở trạng thái chờ bổ sung (không tạo liên kết giả) và có thể dễ dàng cập nhật trong tệp <code class="bg-[#EFEAE0] px-1.5 py-0.5 rounded">data/websites.json</code>.
+          </p>
+        </div>
+      </div>
+
+      <div id="other-websites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Render tự động từ data/websites.json -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MỤC 8: THÔNG TIN LIÊN HỆ CHÍNH THỨC (PHẦN 16)
+         ===================================================================== -->
+    <section id="lien-he" class="py-14 bg-[#EFEAE0]/70 border-t border-[#D5DDD8]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="bg-[#FCFBF7] border border-[#D5DDD8] rounded-3xl p-6 sm:p-10 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#755443]">Kết nối trực tiếp & Đóng góp thông tin</span>
+              <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-[#29483D]">
+                Liên Hệ Chủ Dự Án: Trịnh Thị An
+              </h2>
+              <p class="text-sm sm:text-base text-[#525B55] leading-relaxed">
+                Nếu bạn muốn chia sẻ thêm một góc cà phê Đà Lạt đáng nhớ, cập nhật sự thay đổi về giờ mở cửa của quán hoặc kết nối cùng <strong>7 An AI / An Nhiên AI</strong>, vui lòng liên hệ trực tiếp qua các kênh chính thức dưới đây:
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 rounded-2xl bg-[#F5F1E8] border border-[#D5DDD8]">
+                  <span class="text-xs font-bold uppercase text-[#755443]">Họ tên & Thương hiệu</span>
+                  <p class="font-serif-title text-lg font-bold text-[#29483D] mt-0.5">Trịnh Thị An</p>
+                  <p class="text-xs text-[#525B55]">7 An AI / An Nhiên AI</p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-[#F5F1E8] border border-[#D5DDD8]">
+                  <span class="text-xs font-bold uppercase text-[#755443]">Điện thoại & Zalo chính thức</span>
+                  <p class="font-serif-title text-lg font-bold text-[#29483D] mt-0.5">0834 133 344</p>
+                  <p class="text-xs text-[#525B55]">Hỗ trợ cuộc gọi trực tiếp & Nhắn tin Zalo</p>
+                </div>
+              </div>
+
+              <!-- 4 Nút liên hệ hoạt động thật với đúng cú pháp đã kiểm tra (Phần 16) -->
+              <div class="flex flex-wrap gap-3 pt-3">
+                <a href="tel:0834133344" class="btn-primary-pine">
+                  <span>📞 Gọi điện: 0834 133 344</span>
+                </a>
+                <a href="https://zalo.me/0834133344" target="_blank" rel="noopener noreferrer" class="btn-secondary-coffee">
+                  <span>💬 Nhắn tin Zalo (0834 133 344)</span>
+                </a>
+                <a href="https://www.facebook.com/trinhthi.an.5" target="_blank" rel="noopener noreferrer" class="btn-secondary-coffee">
+                  <span>🌐 Facebook Trịnh Thị An ↗</span>
+                </a>
+                <a href="https://youtube.com/@annhienaimusictta?si=5pXWSG77iLaLYkJh" target="_blank" rel="noopener noreferrer" class="btn-secondary-coffee">
+                  <span>▶️ YouTube: An Nhiên AI Music (TTA) ↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Khung Góp ý & Cập nhật thông tin quán trung thực (Phần 18) -->
+            <div class="lg:col-span-5 bg-[#F5F1E8] p-6 rounded-2xl border border-[#D5DDD8] space-y-3">
+              <h3 class="font-serif-title text-xl font-bold text-[#29483D]">
+                Gửi góp ý hoặc đề xuất quán mới
+              </h3>
+              <p class="text-xs text-[#525B55] leading-relaxed">
+                Vì đây là website tĩnh trên GitHub Pages (không dùng máy chủ thu thập dữ liệu ngầm), để lời nhắn của bạn đến thẳng chị <strong>Trịnh Thị An</strong> nhanh chóng và thực tế nhất, vui lòng gửi trực tiếp qua <strong>Zalo (0834 133 344)</strong> hoặc <strong>Facebook cá nhân</strong>.
+              </p>
+              <div class="p-3.5 rounded-xl bg-white border border-[#E4E9E5] text-xs text-[#262A27] space-y-1">
+                <p class="font-bold text-[#755443]">Nội dung gợi ý khi gửi đề xuất quán:</p>
+                <p>• Tên chính thức & Địa chỉ quán tại Đà Lạt</p>
+                <p>• Giờ hoạt động & Mức giá tham khảo</p>
+                <p>• Ảnh thực tế do chính bạn chụp và đồng ý chia sẻ</p>
+              </div>
+              <div class="pt-1 flex flex-col sm:flex-row gap-2">
+                <a href="https://zalo.me/0834133344" target="_blank" rel="noopener noreferrer" class="btn-primary-pine flex-1 text-xs py-2.5">
+                  Gửi góp ý qua Zalo ↗
+                </a>
+                <a href="https://www.facebook.com/trinhthi.an.5" target="_blank" rel="noopener noreferrer" class="btn-secondary-coffee flex-1 text-xs py-2.5">
+                  Gửi qua Facebook ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       CHÂN TRANG (FOOTER – PHẦN 16)
+       ===================================================================== -->
+  <footer class="bg-[#1D352C] text-[#F5F1E8] py-12 border-t border-[#C49A5A]/30">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-white/15">
+        <div class="md:col-span-5 space-y-2">
+          <p class="font-serif-title text-2xl font-bold text-[#F5F1E8]">
+            HẸN NHAU GIỮA ĐÀ LẠT
+          </p>
+          <p class="text-sm text-[#E8D5B5] font-medium">
+            Một dự án của Trịnh Thị An – 7 An AI (An Nhiên AI).
+          </p>
+          <p class="text-xs text-[#DCE4DF] leading-relaxed max-w-md">
+            Slogan: “Mỗi góc cà phê, một cuộc hẹn đáng nhớ.” — Cẩm nang khám phá cà phê Đà Lạt hướng đến sự chân thực, tôn trọng bản quyền hình ảnh và trải nghiệm thực tế của người dùng.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 space-y-2 text-xs text-[#DCE4DF]">
+          <p class="font-bold uppercase tracking-wider text-[#E8D5B5] mb-2">Thông tin minh bạch & Pháp lý</p>
+          <ul class="space-y-1.5">
+            <li><a href="#lien-he" class="hover:underline">• Thông tin liên hệ chính thức (0834 133 344)</a></li>
+            <li><button type="button" id="footer-open-guide-btn" class="hover:underline text-left">• Nguồn thông tin, phương pháp tuyển chọn & Chính sách quyền riêng tư</button></li>
+            <li><a href="#kham-pha-quan" class="hover:underline">• Danh sách 33 quán cà phê Đà Lạt đã kiểm chứng</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-2 text-xs text-[#DCE4DF]">
+          <p class="font-bold uppercase tracking-wider text-[#E8D5B5] mb-2">Thời gian hiện hành tại Đà Lạt</p>
+          <p class="vn-current-date font-medium text-[#F5F1E8]"></p>
+          <p class="vn-current-time font-bold text-sm text-[#E8D5B5]"></p>
+          <p class="visitor-stats-status text-[11px] text-[#DCE4DF] pt-1">Thống kê truy cập: Chưa kết nối</p>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-[#DCE4DF]">
+        <p>© 2026 HẸN NHAU GIỮA ĐÀ LẠT – Chủ dự án: Trịnh Thị An (7 An AI / An Nhiên AI).</p>
+        <p>Thiết kế chuẩn GitHub Pages • Tối ưu Điện thoại, Máy tính bảng & Máy tính.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL 1: HỒ SƠ CHI TIẾT 19 MỤC CỦA TỪNG QUÁN (PHẦN 10)
+       ===================================================================== -->
+  <div id="cafe-detail-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cafe-detail-modal-title">
+    <div id="cafe-detail-modal-body" class="modal-panel">
+      <!-- Render động khi bấm vào từng quán -->
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: DANH SÁCH QUÁN YÊU THÍCH ĐÃ LƯU TRÊN THIẾT BỊ (PHẦN 17)
+       ===================================================================== -->
+  <div id="favorites-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="fav-modal-title">
+    <div class="modal-panel p-6 sm:p-8 max-w-2xl">
+      <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-[#D5DDD8]">
+        <div>
+          <span class="text-xs font-bold uppercase text-[#755443]">Sổ tay cá nhân trên trình duyệt</span>
+          <h3 id="fav-modal-title" class="font-serif-title text-2xl font-bold text-[#29483D]">
+            Danh Sách Quán Cà Phê Yêu Thích Đã Lưu
+          </h3>
+        </div>
+        <button type="button" id="close-fav-modal-btn" class="px-3 py-1.5 rounded-lg bg-[#F5F1E8] hover:bg-[#DCE4DF] text-sm font-semibold">
+          ✕ Đóng
+        </button>
+      </div>
+
+      <!-- Chú thích bắt buộc theo Phần 17 -->
+      <div class="p-3.5 rounded-xl bg-[#FDF8EE] border border-[#E8D5B5] text-xs text-[#262A27] mb-4">
+        📌 <strong>Lưu ý về lưu trữ trên thiết bị:</strong> “Danh sách được lưu trên trình duyệt của thiết bị này. Dữ liệu có thể mất khi bạn xóa dữ liệu trình duyệt và không tự đồng bộ sang thiết bị khác.”
+      </div>
+
+      <div id="fav-storage-warning" class="hidden p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-[#A94438] mb-4">
+        ⚠️ Trình duyệt của bạn đang chặn tính năng lưu trữ cục bộ (localStorage). Danh sách bạn chọn chỉ được giữ tạm thời trong phiên xem hiện tại.
+      </div>
+
+      <div id="saved-favorites-list" class="space-y-3 max-h-[360px] overflow-y-auto mb-5">
+        <!-- Render tự động -->
+      </div>
+
+      <div class="flex items-center justify-between pt-3 border-t border-[#D5DDD8]">
+        <button type="button" id="clear-all-fav-btn" class="text-xs font-semibold text-[#A94438] hover:underline">
+          🗑️ Xóa toàn bộ danh sách đã lưu
+        </button>
+        <button type="button" onclick="document.getElementById('favorites-modal').classList.add('hidden')" class="btn-primary-pine text-xs py-2 px-4">
+          Tiếp tục khám phá
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: THỜI GIAN HIỆN HÀNH & THỐNG KÊ TRUY CẬP MINH BẠCH (PHẦN 8)
+       ===================================================================== -->
+  <div id="visitor-stats-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="stats-modal-title">
+    <div class="modal-panel p-6 sm:p-8 max-w-2xl">
+      <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-[#D5DDD8]">
+        <div>
+          <span class="text-xs font-bold uppercase text-[#755443]">Minh bạch kỹ thuật (Phần 8)</span>
+          <h3 id="stats-modal-title" class="font-serif-title text-2xl font-bold text-[#29483D]">
+            Thời Gian Hiện Hành & Thống Kê Truy Cập
+          </h3>
+        </div>
+        <button type="button" id="close-visitor-stats-btn" class="px-3 py-1.5 rounded-lg bg-[#F5F1E8] hover:bg-[#DCE4DF] text-sm font-semibold">
+          ✕ Đóng
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+        <div class="p-4 rounded-xl bg-[#29483D] text-[#F5F1E8]">
+          <span class="text-xs uppercase tracking-wider text-[#E8D5B5] font-semibold">1. Thời gian hiện hành (Asia/Ho_Chi_Minh)</span>
+          <p class="vn-current-date text-sm mt-1"></p>
+          <p class="vn-current-time text-2xl font-bold text-[#E8D5B5] mt-1"></p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8]">
+          <span class="text-xs uppercase tracking-wider text-[#755443] font-bold">2. Trạng thái dịch vụ thống kê</span>
+          <p class="visitor-stats-status text-base font-bold text-[#29483D] mt-1">Thống kê truy cập: Chưa kết nối</p>
+          <p class="text-xs text-[#525B55] mt-1">Không hiển thị số 0 giả hoặc bộ đếm ngẫu nhiên.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5 text-xs">
+        <div class="p-3 rounded-xl bg-white border border-[#E4E9E5]">
+          <span class="font-bold text-[#755443] block">Tổng số lượt truy cập:</span>
+          <span class="visitor-stats-total text-[#262A27] font-medium">Chưa kết nối</span>
+        </div>
+        <div class="p-3 rounded-xl bg-white border border-[#E4E9E5]">
+          <span class="font-bold text-[#755443] block">Lượt truy cập trong ngày:</span>
+          <span class="visitor-stats-today text-[#262A27] font-medium">Chưa kết nối</span>
+        </div>
+        <div class="p-3 rounded-xl bg-white border border-[#E4E9E5]">
+          <span class="font-bold text-[#755443] block">Đang trực tuyến:</span>
+          <span class="visitor-stats-online text-[#262A27] font-medium">Chưa kết nối</span>
+        </div>
+      </div>
+
+      <div class="bg-[#FDF8EE] border border-[#E8D5B5] rounded-xl p-4 text-xs text-[#262A27] space-y-2 leading-relaxed">
+        <p class="font-bold text-[#755443] text-sm">3. Giải thích giới hạn kỹ thuật & Hướng dẫn kết nối dữ liệu thật:</p>
+        <p>
+          • <strong>Giới hạn của Website HTML tĩnh:</strong> Mã HTML/JS tĩnh và <code>localStorage</code> chỉ lưu trên từng trình duyệt riêng lẻ, không thể tự đếm tổng lượt truy cập giữa nhiều thiết bị nếu không kết nối dịch vụ thống kê bên ngoài.
+        </p>
+        <p>
+          • <strong>Đề xuất dịch vụ phù hợp nhất cho GitHub Pages:</strong> <strong>GoatCounter</strong> (Miễn phí cho dự án cá nhân/phi thương mại, mã nguồn mở, tôn trọng quyền riêng tư, không dùng cookie theo dõi, không cần đưa mật khẩu hay khóa bí mật vào mã nguồn).
+        </p>
+        <p>
+          • <strong>Cách kích hoạt trong 3 bước:</strong><br/>
+          1. Đăng ký tài khoản miễn phí tại <code>https://www.goatcounter.com</code> với mã tên miền phụ (ví dụ: <code>hennhaugiuadalat.goatcounter.com</code>).<br/>
+          2. Bật tùy chọn <em>"Allow adding visitor counts on your website"</em> trong phần Settings của GoatCounter.<br/>
+          3. Mở tệp <code>js/app.js</code>, tại khối <code>VISITOR_STATS_CONFIG</code>, đổi <code>enabled: true</code> và điền <code>endpointUrl: "https://hennhaugiuadalat.goatcounter.com/counter/TOTAL.json"</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 4: PHƯƠNG PHÁP TUYỂN CHỌN, CẨM NANG QUẢN TRỊ & QUYỀN RIÊNG TƯ
+       ===================================================================== -->
+  <div id="owner-guide-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="guide-modal-title">
+    <div class="modal-panel p-6 sm:p-8 max-w-3xl">
+      <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-[#D5DDD8]">
+        <div>
+          <span class="text-xs font-bold uppercase text-[#755443]">Tài liệu kỹ thuật & Minh bạch nội dung</span>
+          <h3 id="guide-modal-title" class="font-serif-title text-2xl font-bold text-[#29483D]">
+            Phương Pháp Tuyển Chọn, Hướng Dẫn Quản Trị & Quyền Riêng Tư
+          </h3>
+        </div>
+        <button type="button" id="close-owner-guide-btn" class="px-3 py-1.5 rounded-lg bg-[#F5F1E8] hover:bg-[#DCE4DF] text-sm font-semibold">
+          ✕ Đóng
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-[#262A27] leading-relaxed">
+        <div class="p-4 rounded-xl bg-[#F5F1E8] border border-[#D5DDD8]">
+          <h4 class="font-bold text-[#29483D] mb-1">1. Nguồn thông tin & Phương pháp kiểm chứng dữ liệu (Phần 4)</h4>
+          <p>
+            • Dữ liệu <strong>33 quán cà phê thực tế</strong> trong phiên bản bàn giao ngày <strong>28/10/2026</strong> được tra cứu và đối chiếu từ Google Maps (Place ID chính thức, địa chỉ, khung giờ mở cửa, mức giá tham khảo, tiện ích) kết hợp với website/fanpage chính thức của từng quán.<br/>
+            • Các quán đã ngừng hoạt động trên thực tế (như <em>Thanh Thủy Blue Water – 2 Nguyễn Thái Học</em>, <em>Tiệm Cà Phê Tháng Ba – 23 Yên Thế</em>, <em>Woodstock Coffee – 80 Bùi Thị Xuân</em>) đã được loại bỏ khỏi danh sách gợi ý để tránh làm mất thời gian của du khách.<br/>
+            • Những quán có lịch nghỉ cố định giữa tuần (ví dụ: <em>đo đo – nghỉ Thứ 4 & Thứ 5</em>, <em>Tương Coffee – nghỉ Thứ 4</em>, <em>Hoa Cafe – nghỉ Thứ 4</em>) đều được gắn nhãn cảnh báo <strong>“Cần kiểm tra lại”</strong>.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white border border-[#E4E9E5]">
+          <h4 class="font-bold text-[#29483D] mb-1">2. Hướng dẫn thay ảnh & Cập nhật dữ liệu nhanh cho Chị Trịnh Thị An (Phần 19 & 22)</h4>
+          <p>
+            • <strong>Thay ảnh chân dung:</strong> Chép đè ảnh mới vào <code>images/trinh-thi-an-working.jpg</code> (ảnh trang chủ) hoặc <code>images/trinh-thi-an-portrait.jpg</code> (ảnh Góc của 7 An).<br/>
+            • <strong>Thay ảnh thực tế của từng quán:</strong> Đặt ảnh chụp của chị vào thư mục <code>images/</code> (ví dụ: <code>images/cafe-tung.jpg</code>), sau đó mở tệp <code>data/cafes.json</code>, tìm quán tương ứng và điền <code>"imageUrl": "images/cafe-tung.jpg"</code>.<br/>
+            • <strong>Thêm quán mới / Website khác / Lịch trình:</strong> Chỉnh sửa trực tiếp trong 3 tệp dữ liệu tách biệt: <code>data/cafes.json</code>, <code>data/websites.json</code>, <code>data/itineraries.json</code> (đã kèm mẫu kỹ thuật và hướng dẫn từng bước trong tệp <code>HUONG_DAN_VA_BAO_CAO_BAN_GIAO.md</code>).
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[#FDF8EE] border border-[#E8D5B5]">
+          <h4 class="font-bold text-[#755443] mb-1">3. Chính sách quyền riêng tư phù hợp với chức năng thực tế (Phần 16 & 20)</h4>
+          <p>
+            • Website hoạt động hoàn toàn tĩnh trên trình duyệt của người xem, <strong>không yêu cầu đăng ký tài khoản</strong> và <strong>không thu thập ngầm thông tin cá nhân</strong>.<br/>
+            • Chức năng <em>“Lưu quán yêu thích”</em> chỉ sử dụng bộ nhớ cục bộ (<code>localStorage</code>) ngay trên thiết bị của bạn và bạn có thể xóa bất cứ lúc nào.<br/>
+            • Khi xem bản đồ tương tác hoặc bấm sang Google Maps, Facebook, YouTube, Zalo, trình duyệt sẽ kết nối trực tiếp tới các nền tảng đó theo chính sách riêng của từng nhà cung cấp.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast thông báo nổi -->
+  <div id="app-toast" class="hidden fixed bottom-5 right-5 z-50 bg-[#1D352C] text-[#F5F1E8] px-4 py-3 rounded-xl shadow-2xl border border-[#C49A5A] text-xs sm:text-sm font-medium max-w-sm">
+    <span id="app-toast-text"></span>
+  </div>
+
+  <!-- Tệp điều khiển JavaScript chính -->
+  <script src="js/app.js"></script>
+</body>
+</html>
